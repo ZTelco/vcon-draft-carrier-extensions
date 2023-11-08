@@ -61,7 +61,7 @@ Example:
         {
             "uri": "tel:+19876543210",
             "jcard": {
-                "FN": "Bob"
+                "FN": "Bob",
                 "Version": "4.0"
             }
         }
