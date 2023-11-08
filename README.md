@@ -44,3 +44,44 @@ $ make
 Command line usage requires that you have the necessary software installed.  See
 [the instructions](https://github.com/martinthomson/i-d-template/blob/main/doc/SETUP.md).
 
+ # Alterations from parent Draft
+
+## PARTY Object
+Example:
+```
+{
+    "party": [
+        {
+            "uri": "tel:+12345678901",
+            "jcard": {
+                "FN": "Alice",
+                "Version": "4.0'
+            }
+        },
+        {
+            "uri": "tel:+19876543210",
+            "jcard": {
+                "FN": "Bob"
+                "Version": "4.0"
+            }
+        }
+    ]
+}
+```
+
+As seen in the above Example the PARTY object has been changed significantly and now consists of *only* two top level items:
+
+### URI
+```
+"uri": "" (String)
+```
+The URI object is a unique identifier for the party on the platform in which the dialog occoured. For example on a UCaaS platform a call between an internal agent and an outside party may be represented by the URI value `sip:100@companya.com` and `tel:18588675309`. Note that in the text example the two objects use different protocol identifiers intentionally to demonstrate the flexibility of the field. 
+
+### JCARD
+```
+ "jcard": {} (Object, Optional)
+```
+This element contans a RFC 7905 compliant jCard entry containing known data about the party. This field is optional, as the system initially creating the vCon object may not have further details about a given party other than the contact uri from which the conversation originated. 
+
+> #### Why jCard?
+> Rather than expand the vCon format to house data on a given party, we reference RFC 7905 (and by extension RFC 6350) as they are mature and widely adopted standards for formatting known data about an individual or company. Additionally most applications that support customer data understand the vCard format for contacts allowing for easier integration in a vCon import/export tool. 
